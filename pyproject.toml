@@ -2,6 +2,7 @@
 requires = [
     "hatchling",
     "hatch-cpp",
+    "pybind11",
 ]
 build-backend="hatchling.build"
 
@@ -34,6 +35,7 @@ develop = [
     "build",
     "bump-my-version",
     "check-manifest",
+    "cibuildwheel",
     "hatch-cpp",
     "hatchling",
     "pytest",
@@ -67,9 +69,26 @@ replace = 'version = "{new_version}"'
 [tool.check-manifest]
 ignore = [
     ".copier-answers.yml",
+    ".clang-format",
     "Makefile",
     "docs/**/*",
 ]
+
+[tool.cibuildwheel]
+build = "cp39-* cp310-* cp311-* cp312-*"
+test-command = "echo 'TODO'"
+test-requires = []
+
+[tool.cibuildwheel.linux]
+skip = "*i686 musllinux*"
+
+[tool.cibuildwheel.macos]
+environment = {MACOSX_DEPLOYMENT_TARGET="11.0"}
+archs = "arm64"
+
+[tool.cibuildwheel.windows]
+archs = "AMD64"
+skip = "*win32 *arm_64"	
 
 [tool.coverage.run]
 branch = true
@@ -98,7 +117,7 @@ src = "/"
 [tool.hatch.build.hooks.hatch-cpp]
 verbose = true
 libraries = [
-{name = "python_template_cpp/extension", sources = ["cpp/cpp-template/extension.cpp", "cpp/cpp-template/cpp-template.cpp"], include-dirs = ["cpp"], binding="pybind11"}
+{name = "python_template_cpp/extension", sources = ["cpp/cpp-template/extension.cpp"], include-dirs = ["cpp"], binding="pybind11"}
 ]
 
 [tool.hatch.build.targets.sdist]
@@ -125,4 +144,4 @@ known-first-party = ["python_template_cpp"]
 section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
 
 [tool.ruff.lint.per-file-ignores]
-"__init__.py" = ["F401"]
+"__init__.py" = ["F401", "F403"]

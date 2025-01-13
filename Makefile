@@ -12,6 +12,9 @@ build-py:
 build-cpp:
 	python -m hatchling build --hooks-only
 
+build-cibw:
+	python -m cibuildwheel --output-dir dist
+
 build: build-cpp build-py  ## build the project
 
 .PHONY: install
