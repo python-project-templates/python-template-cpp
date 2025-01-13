@@ -1,8 +1,15 @@
-# C++ Project Template
-A Python/C++ project template.
+# python template cpp
 
-[![Build Status](https://github.com/python-project-templates/cpp/workflows/Build%20Status/badge.svg?branch=main)](https://github.com/python-project-templates/cpp/actions?query=workflow%3A%22Build+Status%22)
-[![codecov](https://codecov.io/gh/python-project-templates/cpp/branch/main/graph/badge.svg)](https://codecov.io/gh/python-project-templates/cpp)
-[![License](https://img.shields.io/github/license/python-project-templates/cpp)](https://github.com/python-project-templates/cpp)
-[![PyPI](https://img.shields.io/pypi/v/cpp_template.svg)](https://pypi.python.org/pypi/cpp_template)
+A C++-Python project template
 
+[![Build Status](https://github.com/python-project-templates/python-template-cpp/actions/workflows/build.yml/badge.svg?branch=main&event=push)](https://github.com/python-project-templates/python-template-cpp/actions/workflows/build.yml)
+[![codecov](https://codecov.io/gh/python-project-templates/python-template-cpp/branch/main/graph/badge.svg)](https://codecov.io/gh/python-project-templates/python-template-cpp)
+[![License](https://img.shields.io/github/license/python-project-templates/python-template-cpp)](https://github.com/python-project-templates/python-template-cpp)
+[![PyPI](https://img.shields.io/pypi/v/python-template-cpp.svg)](https://pypi.python.org/pypi/python-template-cpp)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/python-project-templates/python-template-cpp/main?urlpath=lab)
+
+## Overview
+
+
+> [!NOTE]
+> This library was generated using [copier](https://copier.readthedocs.io/en/stable/) from the [Base Python Project Template repository](https://github.com/python-project-templates/base).

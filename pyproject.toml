@@ -1,109 +1,128 @@
 [build-system]
 requires = [
-    "cmake",
-    "ninja",
-    "numpy",
-    "pybind11[global]",
-    "scikit-build",
-    "setuptools",
-    "wheel",
+    "hatchling",
+    "hatch-cpp",
 ]
-build-backend = "setuptools.build_meta"
+build-backend="hatchling.build"
 
 [project]
-name = "cpp"
-authors = [{name = "Tim Paine", email = "t.paine154@gmail.com"}]
-description="A Python/C++ project template"
-version = "0.1.0"
+name = "python-template-cpp"
+authors = [{name = "Python Project Template Authors", email = "3105306+timkpaine@users.noreply.github.com"}]
+description = "A C++-Python project template"
 readme = "README.md"
-license = { file = "LICENSE" }
-requires-python = ">=3.7"
+license = { text = "Apache-2.0" }
+version = "0.1.0"
+requires-python = ">=3.9"
+keywords = []
+
 classifiers = [
     "Development Status :: 3 - Alpha",
-    "Programming Language :: C++",
+    "Programming Language :: Python",
     "Programming Language :: Python :: Implementation :: CPython",
     "Programming Language :: Python :: Implementation :: PyPy",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
 ]
-keywords = []
+
 dependencies = []
 
 [project.optional-dependencies]
 develop = [
-    "black>=23",
-    "bump2version",
+    "build",
+    "bump-my-version",
     "check-manifest",
-    "cibuildwheel",
-    "numpy",
-    "pybind11[global]",
+    "hatch-cpp",
+    "hatchling",
     "pytest",
     "pytest-cov",
-    "pytest-sugar",
     "ruff",
-    "scikit-build",
     "twine",
     "wheel",
 ]
-test = [
-    "pytest",
-    "pytest-cov",
-    "pytest-sugar",
-]
+
+[project.scripts]
 
 [project.urls]
-Repository = "https://github.com/python-project-templates/cpp"
-Homepage = "https://github.com/python-project-templates/cpp"
-Issues = "https://github.com/python-project-templates/cpp/issues"
+Repository = "https://github.com/python-project-templates/python-template-cpp"
+Homepage = "https://github.com/python-project-templates/python-template-cpp"
 
-[tool.black]
-color = true
-line-length = 150
-target-version = ["py310"]
-skip-string-normalization = true
+[tool.bumpversion]
+current_version = "0.1.0"
+commit = true
+tag = true
+
+[[tool.bumpversion.files]]
+filename = "python_template_cpp/__init__.py"
+search = '__version__ = "{current_version}"'
+replace = '__version__ = "{new_version}"'
+
+[[tool.bumpversion.files]]
+filename = "pyproject.toml"
+search = 'version = "{current_version}"'
+replace = 'version = "{new_version}"'
 
 [tool.check-manifest]
-ignore = []
-
-[tool.cibuildwheel]
-build = "cp38-* cp39-* cp310-* cp311-*"
-before-all = "make develop"
-
-build-verbosity = "2"
-environment = {STATIC_PYTHON="On"}
-
-test-command = "pytest -vvv {project}/cpp_template/tests"
-test-requires = [
-    "pytest",
-    "pytest-cov",
-    "pytest-sugar",
+ignore = [
+    ".copier-answers.yml",
+    "Makefile",
+    "docs/**/*",
 ]
 
-[tool.cibuildwheel.linux]
-archs = "x86_64 aarch64"
-skip = "*musllinux* *i686"
+[tool.coverage.run]
+branch = true
+omit = [
+    "python_template_cpp/tests/integration/",
+]
+[tool.coverage.report]
+exclude_also = [
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "@(abc\\.)?abstractmethod",
+]
+ignore_errors = true
+fail_under = 50
 
-[tool.cibuildwheel.macos]
-archs = "x86_64 arm64"
-environment = {CFLAGS="-I/usr/local/include -L/usr/local/lib", CXXFLAGS="-I/usr/local/include -L/usr/local/lib", LDFLAGS="-L/usr/local/lib"}
+[tool.hatch.build]
+artifacts = [
+    "project/*.dll",
+    "project/*.dylib",
+    "project/*.so",
+]
 
-[tool.cibuildwheel.windows]
-archs = "AMD64"
-skip = "*win32 *arm_64"
+[tool.hatch.build.sources]
+src = "/"
+
+[tool.hatch.build.hooks.hatch-cpp]
+verbose = true
+libraries = [
+{name = "python_template_cpp/extension", sources = ["cpp/cpp-template/extension.cpp", "cpp/cpp-template/cpp-template.cpp"], include-dirs = ["cpp"], binding="pybind11"}
+]
+
+[tool.hatch.build.targets.sdist]
+packages = ["python_template_cpp", "cpp"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["python_template_cpp"]
+
+[tool.pytest.ini_options]
+addopts = ["-vvv", "--junitxml=junit.xml"]
+asyncio_mode = "strict"
+testpaths = "python_template_cpp/tests"
 
 [tool.ruff]
 line-length = 150
 
-[tool.ruff.per-file-ignores]
-"__init__.py" = ["F401", "F403"]
+[tool.ruff.lint]
+extend-select = ["I"]
 
-[tool.pytest.ini_options]
-asyncio_mode = "strict"
-testpaths = "cpp_template/tests"
+[tool.ruff.lint.isort]
+combine-as-imports = true
+default-section = "third-party"
+known-first-party = ["python_template_cpp"]
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
 
-[tool.setuptools]
-py-modules = ["cpp_template"]
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]

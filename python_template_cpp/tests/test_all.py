@@ -1,4 +1,4 @@
-from cpp_template import add
+from python_template_cpp import add
 
 
 class TestAll:
