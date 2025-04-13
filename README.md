@@ -6,7 +6,6 @@ A C++-Python project template
 [![codecov](https://codecov.io/gh/python-project-templates/python-template-cpp/branch/main/graph/badge.svg)](https://codecov.io/gh/python-project-templates/python-template-cpp)
 [![License](https://img.shields.io/github/license/python-project-templates/python-template-cpp)](https://github.com/python-project-templates/python-template-cpp)
 [![PyPI](https://img.shields.io/pypi/v/python-template-cpp.svg)](https://pypi.python.org/pypi/python-template-cpp)
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/python-project-templates/python-template-cpp/main?urlpath=lab)
 
 ## Overview
 
