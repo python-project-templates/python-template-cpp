@@ -139,10 +139,13 @@ js/dist
 js/lib
 js/node_modules
 js/*.tgz
+python_template_cpp/extension
 
 # Jupyter
 .ipynb_checkpoints
 .autoversion
+!python_template_cpp/extension/python_template_cpp.json
+!python_template_cpp/extension/install.json
 python_template_cpp/nbextension
 python_template_cpp/labextension
 
