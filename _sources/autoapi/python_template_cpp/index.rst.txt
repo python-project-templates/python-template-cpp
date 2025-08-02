@@ -1,0 +1,37 @@
+python_template_cpp
+===================
+
+.. py:module:: python_template_cpp
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   python_template_cpp.__version__
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   python_template_cpp.include_path
+   python_template_cpp.bin_path
+   python_template_cpp.lib_path
+
+
+Package Contents
+----------------
+
+.. py:data:: __version__
+   :value: '0.1.0'
+
+
+.. py:function:: include_path()
+
+.. py:function:: bin_path()
+
+.. py:function:: lib_path()
+
