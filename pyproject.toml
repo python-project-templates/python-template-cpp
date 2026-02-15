@@ -8,7 +8,9 @@ build-backend="hatchling.build"
 
 [project]
 name = "python-template-cpp"
-authors = [{name = "Python Project Template Authors", email = "3105306+timkpaine@users.noreply.github.com"}]
+authors = [
+    {name = "Python Project Template Authors", email = "3105306+timkpaine@users.noreply.github.com"},
+]
 description = "A C++-Python project template"
 readme = "README.md"
 license = { text = "Apache-2.0" }
@@ -46,6 +48,8 @@ develop = [
     "pytest-cov",
     "ruff>=0.9,<0.15",
     "twine",
+    "ty",
+    "uv",
     "wheel",
 ]
 
@@ -85,9 +89,10 @@ ignore = [
 [tool.cibuildwheel]
 build = "cp310-* cp311-* cp312-* cp313-*"
 test-command = "echo 'TODO'"
-test-requires = []
+test-extras = "develop"
 
 [tool.cibuildwheel.linux]
+manylinux-x86_64-image = "manylinux_2_28"
 skip = "*i686 musllinux*"
 
 [tool.cibuildwheel.macos]
@@ -125,30 +130,59 @@ src = "/"
 [tool.hatch.build.hooks.hatch-cpp]
 verbose = true
 libraries = [
-{name = "python_template_cpp/extension", sources = ["cpp/python-template-cpp/extension.cpp"], include-dirs = ["cpp"], binding="pybind11"}
+    {name = "python_template_cpp/extension", sources = ["cpp/python-template-cpp/extension.cpp"], include-dirs = ["cpp"], binding="pybind11"}
 ]
 
 [tool.hatch.build.targets.sdist]
-packages = ["python_template_cpp", "cpp"]
+packages = [
+    "python_template_cpp",
+    "cpp",
+]
 
 [tool.hatch.build.targets.wheel]
-packages = ["python_template_cpp"]
+packages = [
+    "python_template_cpp",
+]
 
 [tool.pytest.ini_options]
-addopts = ["-vvv", "--junitxml=junit.xml"]
+addopts = [
+    "-vvv",
+    "--junitxml=junit.xml",
+]
 testpaths = "python_template_cpp/tests"
 
 [tool.ruff]
 line-length = 150
 
 [tool.ruff.lint]
-extend-select = ["I"]
+extend-select = [
+    "I",
+]
 
 [tool.ruff.lint.isort]
 combine-as-imports = true
 default-section = "third-party"
-known-first-party = ["python_template_cpp"]
-section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+known-first-party = [
+    "python_template_cpp",
+]
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder",
+]
 
 [tool.ruff.lint.per-file-ignores]
-"__init__.py" = ["F401", "F403"]
+"__init__.py" = [
+    "F401",
+    "F403",
+]
+
+[tool.yardang]
+title = "python template cpp"
+root = "README.md"
+pages = []
+use-autoapi = true
+
+
