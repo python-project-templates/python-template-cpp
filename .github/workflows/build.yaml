@@ -102,7 +102,10 @@ jobs:
       if: matrix.os == 'macos-latest'
 
     - name: Build (Windows)
-      run: make build-cibw
+      run: |
+        call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+        make build-cibw
+      shell: cmd
       env:
         CIBW_BUILD: "${{ matrix.cibuildwheel }}-win_amd64"
         CIBW_BEFORE_ALL: call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
@@ -112,7 +115,7 @@ jobs:
       run: make coverage
 
     - name: Upload test results (Python)
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: test-results-${{ matrix.os }}-${{ matrix.python-version }}
         path: junit.xml
@@ -125,11 +128,11 @@ jobs:
       if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
 
     - name: Upload coverage
-      uses: codecov/codecov-action@v5
+      uses: codecov/codecov-action@v6
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
 
-    - uses: actions/upload-artifact@v6
+    - uses: actions/upload-artifact@v7
       with:
         name: dist-${{matrix.os}}-${{matrix.python-version}}
         path: dist
