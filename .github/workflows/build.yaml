@@ -30,63 +30,60 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: ["3.11", "3.12", "3.13"]
-        cibuildwheel: ["cp311", "cp312", "cp313"]
-        exclude:
-          - python-version: "3.11"
-            cibuildwheel: "cp312"
-          - python-version: "3.11"
-            cibuildwheel: "cp313"
-          - python-version: "3.12"
+        python:
+          - version: "3.11"
             cibuildwheel: "cp311"
-          - python-version: "3.12"
-            cibuildwheel: "cp313"
-          - python-version: "3.13"
-            cibuildwheel: "cp311"
-          - python-version: "3.13"
+            primary: true
+          - version: "3.12"
             cibuildwheel: "cp312"
+<<<<<<< before updating
 
     steps:
     - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+=======
+            primary: false
+          - version: "3.13"
+            cibuildwheel: "cp313"
+            primary: false
+>>>>>>> after updating
 
-    - uses: actions-ext/python/setup@main
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
-        version: ${{ matrix.python-version }}
+        persist-credentials: false
+
+    - uses: actions-ext/python/setup@6e1b91a408ea89f49bc8aff8724f83826f7b5446
+      with:
+        version: ${{ matrix.python.version }}
+
+    - uses: actions-ext/cpp/setup@51c484ef64088c62434226039d0e3359f5fc8df6
 
     - name: Install dependencies
       run: make develop
-      if: matrix.os != 'windows-latest'
-
-    - name: Install dependencies
-      run: |
-        for /f "usebackq tokens=*" %%i in (`vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do call "%%i\VC\Auxiliary\Build\vcvars64.bat"
-        make develop
-      shell: cmd
-      if: matrix.os == 'windows-latest'
 
     - name: Lint
       run: make lint
-      if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
+      if: matrix.os == 'ubuntu-latest' && matrix.python.primary
 
     - name: Checks
       run: make checks
-      if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
+      if: matrix.os == 'ubuntu-latest' && matrix.python.primary
 
     - name: Test
       run: make coverage
 
     - name: Upload test results (Python)
-      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
       with:
-        name: test-results-${{ matrix.os }}-${{ matrix.python-version }}
+        name: test-results-${{ matrix.os }}-${{ matrix.python.version }}
         path: junit.xml
-      if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
+      if: matrix.os == 'ubuntu-latest' && matrix.python.primary
 
     - name: Publish Unit Test Results
       uses: EnricoMi/publish-unit-test-result-action@d0a4676d0e0b938bc201470d88276b7c74c712b3 # v2.24.0
       with:
         files: '**/junit.xml'
-      if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
+      if: matrix.os == 'ubuntu-latest' && matrix.python.primary
 
     - name: Upload coverage
       uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
@@ -103,7 +100,7 @@ jobs:
         make dist-py-wheel
         make dist-check
       env:
-        CIBW_BUILD: "${{ matrix.cibuildwheel }}-manylinux*"
+        CIBW_BUILD: "${{ matrix.python.cibuildwheel }}-manylinux*"
         CIBW_BUILD_VERBOSITY: 3
       if: matrix.os == 'ubuntu-latest'
 
@@ -112,32 +109,29 @@ jobs:
         rm -rf dist
         make dist-py-wheel
       env:
-        CIBW_BUILD: "${{ matrix.cibuildwheel }}-macos*"
+        CIBW_BUILD: "${{ matrix.python.cibuildwheel }}-macos*"
         CIBW_BUILD_VERBOSITY: 3
       if: matrix.os == 'macos-latest'
 
     - name: Make dist (Windows)
       run: |
-        if exist dist rmdir /s /q dist
-        for /f "usebackq tokens=*" %%i in (`vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do call "%%i\VC\Auxiliary\Build\vcvars64.bat"
+        if (Test-Path dist) { Remove-Item dist -Recurse -Force }
         make dist-py-wheel
-      shell: cmd
       env:
-        CIBW_BUILD: "${{ matrix.cibuildwheel }}-win_amd64"
-        CIBW_BEFORE_ALL: for /f "usebackq tokens=*" %i in (`vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do call "%i\VC\Auxiliary\Build\vcvars64.bat"
+        CIBW_BUILD: "${{ matrix.python.cibuildwheel }}-win_amd64"
       if: matrix.os == 'windows-latest'
 
-    - uses: actions-ext/python/test-wheel@main
+    - uses: actions-ext/python/test-wheel@6e1b91a408ea89f49bc8aff8724f83826f7b5446
       with:
         module: python_template_cpp
       if: matrix.os == 'ubuntu-latest'
 
-    - uses: actions-ext/python/test-sdist@main
+    - uses: actions-ext/python/test-sdist@6e1b91a408ea89f49bc8aff8724f83826f7b5446
       with:
         module: python_template_cpp
       if: matrix.os == 'ubuntu-latest'
 
-    - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+    - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
       with:
-        name: dist-${{matrix.os}}-${{matrix.python-version}}
+        name: dist-${{matrix.os}}-${{matrix.python.version}}
         path: dist
