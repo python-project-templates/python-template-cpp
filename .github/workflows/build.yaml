@@ -50,7 +50,7 @@ jobs:
       with:
         version: ${{ matrix.python.version }}
 
-    - uses: actions-ext/cpp/setup@51c484ef64088c62434226039d0e3359f5fc8df6
+    - uses: actions-ext/cpp/setup@c2b1e90366b3a1c628a1df0748135f5e345ab26f
 
     - uses: actions-ext/cpp/setup-vcpkg-cache@6ded4958b7e13d73428138a01d53c33cb941121d
 
