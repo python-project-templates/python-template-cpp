@@ -146,6 +146,8 @@ python_template_cpp/labextension
 
 # Emscripten SDK (locally installed)
 emsdk
+.pyodide_build/
+
 
 # Mac
 .DS_Store
