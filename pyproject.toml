@@ -77,12 +77,13 @@ replace = 'version = "{new_version}"'
 
 [tool.cibuildwheel]
 build = "cp311-* cp312-* cp313-*"
-test-command = "echo 'TODO'"
+test-command = "pytest -vvv {project}/python_template_cpp/tests"
 test-extras = "develop"
 
 [tool.cibuildwheel.linux]
+manylinux-aarch64-image = "manylinux_2_28"
 manylinux-x86_64-image = "manylinux_2_28"
-skip = "*i686 musllinux*"
+skip = "*i686* *musllinux*"
 
 [tool.cibuildwheel.macos]
 environment = {MACOSX_DEPLOYMENT_TARGET="11.0"}
