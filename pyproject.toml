@@ -91,7 +91,7 @@ archs = "arm64"
 
 [tool.cibuildwheel.windows]
 archs = "AMD64"
-skip = "*win32 *arm_64"
+skip = "*win32 *arm64"
 
 [tool.cibuildwheel.pyodide]
 test-command = "python -m pytest -vvv --pyargs python_template_cpp.tests"
