@@ -30,8 +30,8 @@ lint-cpp:  ## run cpp linter
 	clang-format --dry-run -Werror -i -style=file `find ./cpp -name "*.*pp"`
 
 lint-docs:  ## lint docs with mdformat and codespell
-	python -m mdformat --check README.md docs/wiki/
-	python -m codespell_lib README.md docs/wiki/
+	python -m mdformat --check README.md $(wildcard docs/src) docs/wiki/
+	python -m codespell_lib README.md $(wildcard docs/src) docs/wiki/
 
 lint: lint-cpp lint-py  ## run project linters
 
@@ -47,8 +47,8 @@ fix-cpp:  ## fix cpp formatting
 	clang-format -i -style=file `find ./cpp -name "*.*pp"`
 
 fix-docs:  ## autoformat docs with mdformat and codespell
-	python -m mdformat README.md docs/wiki/
-	python -m codespell_lib --write README.md docs/wiki/
+	python -m mdformat README.md $(wildcard docs/src) docs/wiki/
+	python -m codespell_lib --write README.md $(wildcard docs/src) docs/wiki/
 
 fix: fix-cpp fix-py fix-docs  ## run project autoformatters
 
@@ -66,7 +66,7 @@ check-dist:  ## check python sdist and wheel with check-dist
 check-types:  ## check python types with ty
 	ty check --python $$(which python)
 
-checks: check-dist
+checks: check-dist check-types
 
 # alias
 check: checks
