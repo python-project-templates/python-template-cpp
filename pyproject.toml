@@ -42,6 +42,7 @@ develop = [
     "hatch-cpp>=0.5.0",
     "hatchling",
     "mdformat",
+    "mdformat-frontmatter",
     "mdformat-tables>=1",
     "pybind11",
     "pytest",
@@ -101,7 +102,7 @@ test-requires = ["pytest"]
 [tool.coverage.run]
 branch = true
 omit = [
-    "python_template_cpp/tests/integration/",
+    "python_template_cpp/tests/integration/*",
 ]
 
 [tool.coverage.report]
@@ -113,13 +114,6 @@ exclude_also = [
 ignore_errors = true
 fail_under = 50
 
-[tool.hatch.build]
-artifacts = [
-    "python_template_cpp/*.dll",
-    "python_template_cpp/*.dylib",
-    "python_template_cpp/*.so",
-]
-
 [tool.hatch.build.sources]
 src = "/"
 
@@ -130,6 +124,7 @@ libraries = [
 ]
 
 [tool.hatch.build.targets.sdist]
+exclude = ["*.dll", "*.dylib", "*.so", "*.pyd"]
 packages = [
     "python_template_cpp",
     "cpp",
@@ -141,6 +136,11 @@ packages = [
 
 
 [tool.hatch.build.targets.wheel]
+artifacts = [
+    "python_template_cpp/*.dll",
+    "python_template_cpp/*.dylib",
+    "python_template_cpp/*.so",
+]
 packages = [
     "python_template_cpp",
 ]
