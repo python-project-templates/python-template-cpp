@@ -10,6 +10,7 @@ Submodules
 .. toctree::
    :maxdepth: 1
 
+   /autoapi/python_template_cpp/extension/index
    /autoapi/python_template_cpp/tests/index
 
 
@@ -26,6 +27,7 @@ Functions
 
 .. autoapisummary::
 
+   python_template_cpp.add
    python_template_cpp.include_path
    python_template_cpp.bin_path
    python_template_cpp.lib_path
@@ -33,6 +35,8 @@ Functions
 
 Package Contents
 ----------------
+
+.. py:function:: add(i: int, j: int) -> int
 
 .. py:data:: __version__
    :value: '0.1.0'

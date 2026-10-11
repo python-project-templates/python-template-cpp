@@ -1,0 +1,19 @@
+python_template_cpp.extension
+=============================
+
+.. py:module:: python_template_cpp.extension
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   python_template_cpp.extension.add
+
+
+Module Contents
+---------------
+
+.. py:function:: add(i: int, j: int) -> int
+
