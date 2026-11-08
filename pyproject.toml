@@ -42,7 +42,7 @@ develop = [
     "hatch-cpp>=0.5.0",
     "hatchling",
     "mdformat",
-    "mdformat-frontmatter",
+    "mdformat-myst",
     "mdformat-tables>=1",
     "pybind11",
     "pytest",
