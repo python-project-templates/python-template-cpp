@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/autodoc_pydantic.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=6a604523" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/fonts/fuma-fonts.css?v=c2892c73" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/styles/custom.css?v=88c24c6a" />
     <script src="../../../../_static/documentation_options.js?v=01f34227"></script>
@@ -21,7 +21,7 @@
     <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../../../_static/design-tabs.js?v=fcb327ea"></script>
     <script data-searchlite-index="searchlite-index.json" defer="defer" src="../../../../_static/searchlite.js?v=a5320898"></script>
     <script defer="defer" src="../../../../_static/fuma.js?v=9c325f6c"></script>
     <script src="../../../../_static/js/custom.js?v=956e5d78"></script>
@@ -147,16 +147,37 @@
     </button>
     <div id="fd-toc-mobile" hidden><ul class="fd-toc-list">
   <li class="fd-toc-item" data-depth="1">
-    <a href="#classes">Classes</a>
+    <a href="#attributes">Attributes</a>
+  </li>
+  <li class="fd-toc-item" data-depth="1">
+    <a href="#functions">Functions</a>
   </li>
   <li class="fd-toc-item" data-depth="1">
     <a href="#module-contents">Module Contents</a>
   </li>
   <li class="fd-toc-item" data-depth="2">
-    <a href="#python_template_cpp.tests.test_all.TestAll">TestAll</a>
+    <a href="#python_template_cpp.tests.test_all.C_CONSUMER">C_CONSUMER</a>
   </li>
-  <li class="fd-toc-item" data-depth="3">
-    <a href="#python_template_cpp.tests.test_all.TestAll.test_all">TestAll.test_all()</a>
+  <li class="fd-toc-item" data-depth="2">
+    <a href="#python_template_cpp.tests.test_all.CMAKE_CONSUMER">CMAKE_CONSUMER</a>
+  </li>
+  <li class="fd-toc-item" data-depth="2">
+    <a href="#python_template_cpp.tests.test_all._library_filename">_library_filename()</a>
+  </li>
+  <li class="fd-toc-item" data-depth="2">
+    <a href="#python_template_cpp.tests.test_all._cmake_build">_cmake_build()</a>
+  </li>
+  <li class="fd-toc-item" data-depth="2">
+    <a href="#python_template_cpp.tests.test_all.test_all">test_all()</a>
+  </li>
+  <li class="fd-toc-item" data-depth="2">
+    <a href="#python_template_cpp.tests.test_all.test_c_library_and_header_are_installed">test_c_library_and_header_are_installed()</a>
+  </li>
+  <li class="fd-toc-item" data-depth="2">
+    <a href="#python_template_cpp.tests.test_all.test_c_consumer_builds_against_the_installed_package">test_c_consumer_builds_against_the_installed_package()</a>
+  </li>
+  <li class="fd-toc-item" data-depth="2">
+    <a href="#python_template_cpp.tests.test_all.test_cmake_project_installs_a_package_that_find_package_locates">test_cmake_project_installs_a_package_that_find_package_locates()</a>
   </li>
 </ul>
 </div>
@@ -184,11 +205,39 @@
       <div class="fd-prose">
   <section id="module-python_template_cpp.tests.test_all">
 <span id="python-template-cpp-tests-test-all"></span><h1>python_template_cpp.tests.test_all<a class="headerlink" href="#module-python_template_cpp.tests.test_all" title="Link to this heading">¶</a></h1>
-<section id="classes">
-<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">¶</a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#python_template_cpp.tests.test_all.TestAll" title="python_template_cpp.tests.test_all.TestAll"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TestAll</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#python_template_cpp.tests.test_all.C_CONSUMER" title="python_template_cpp.tests.test_all.C_CONSUMER"><code class="xref py py-obj docutils literal notranslate"><span class="pre">C_CONSUMER</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#python_template_cpp.tests.test_all.CMAKE_CONSUMER" title="python_template_cpp.tests.test_all.CMAKE_CONSUMER"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CMAKE_CONSUMER</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#python_template_cpp.tests.test_all._library_filename" title="python_template_cpp.tests.test_all._library_filename"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_library_filename</span></code></a>(name) → str</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#python_template_cpp.tests.test_all._cmake_build" title="python_template_cpp.tests.test_all._cmake_build"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_cmake_build</span></code></a>(cmake, source, build, option) → None</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#python_template_cpp.tests.test_all.test_all" title="python_template_cpp.tests.test_all.test_all"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_all</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#python_template_cpp.tests.test_all.test_c_library_and_header_are_installed" title="python_template_cpp.tests.test_all.test_c_library_and_header_are_installed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_c_library_and_header_are_installed</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#python_template_cpp.tests.test_all.test_c_consumer_builds_against_the_installed_package" title="python_template_cpp.tests.test_all.test_c_consumer_builds_against_the_installed_package"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_c_consumer_builds_against_the_installed_package</span></code></a>(...)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#python_template_cpp.tests.test_all.test_cmake_project_installs_a_package_that_find_package_locates" title="python_template_cpp.tests.test_all.test_cmake_project_installs_a_package_that_find_package_locates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_cmake_project_installs_a_package_that_find_package_locates</span></code></a>(...)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -196,15 +245,65 @@
 </section>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="python_template_cpp.tests.test_all.TestAll">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">python_template_cpp.tests.test_all.</span></span><span class="sig-name descname"><span class="pre">TestAll</span></span><a class="reference internal" href="../../../../_modules/python_template_cpp/tests/test_all.html#TestAll"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_template_cpp.tests.test_all.TestAll" title="Link to this definition">¶</a></dt>
-<dd><dl class="py method">
-<dt class="sig sig-object py" id="python_template_cpp.tests.test_all.TestAll.test_all">
-<span class="sig-name descname"><span class="pre">test_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/python_template_cpp/tests/test_all.html#TestAll.test_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_template_cpp.tests.test_all.TestAll.test_all" title="Link to this definition">¶</a></dt>
+<dl class="py data">
+<dt class="sig sig-object py" id="python_template_cpp.tests.test_all.C_CONSUMER">
+<span class="sig-prename descclassname"><span class="pre">python_template_cpp.tests.test_all.</span></span><span class="sig-name descname"><span class="pre">C_CONSUMER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Multiline-String</span></em><a class="headerlink" href="#python_template_cpp.tests.test_all.C_CONSUMER" title="Link to this definition">¶</a></dt>
+<dd><details><summary>Show Value</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">"""</span>
+<span class="sd">#include &lt;stdio.h&gt;</span>
+<span class="sd">#include &lt;python_template_cpp/python_template_cpp.h&gt;</span>
+
+<span class="sd">int main(void) {</span>
+<span class="sd">    printf("%u %d", python_template_cpp_abi_version(), python_template_cpp_add(1, 2));</span>
+<span class="sd">    return 0;</span>
+<span class="sd">}</span>
+<span class="sd">"""</span>
+</pre></div>
+</div>
+</details></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="python_template_cpp.tests.test_all.CMAKE_CONSUMER">
+<span class="sig-prename descclassname"><span class="pre">python_template_cpp.tests.test_all.</span></span><span class="sig-name descname"><span class="pre">CMAKE_CONSUMER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Multiline-String</span></em><a class="headerlink" href="#python_template_cpp.tests.test_all.CMAKE_CONSUMER" title="Link to this definition">¶</a></dt>
+<dd><details><summary>Show Value</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">"""</span>
+<span class="sd">cmake_minimum_required(VERSION 3.20)</span>
+<span class="sd">project(consumer LANGUAGES C)</span>
+<span class="sd">find_package(python_template_cpp CONFIG REQUIRED)</span>
+<span class="sd">add_executable(consumer consumer.c)</span>
+<span class="sd">target_link_libraries(consumer PRIVATE python_template_cpp::python_template_cpp)</span>
+<span class="sd">"""</span>
+</pre></div>
+</div>
+</details></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="python_template_cpp.tests.test_all._library_filename">
+<span class="sig-prename descclassname"><span class="pre">python_template_cpp.tests.test_all.</span></span><span class="sig-name descname"><span class="pre">_library_filename</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#python_template_cpp.tests.test_all._library_filename" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="python_template_cpp.tests.test_all._cmake_build">
+<span class="sig-prename descclassname"><span class="pre">python_template_cpp.tests.test_all.</span></span><span class="sig-name descname"><span class="pre">_cmake_build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmake</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">build</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#python_template_cpp.tests.test_all._cmake_build" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="python_template_cpp.tests.test_all.test_all">
+<span class="sig-prename descclassname"><span class="pre">python_template_cpp.tests.test_all.</span></span><span class="sig-name descname"><span class="pre">test_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#python_template_cpp.tests.test_all.test_all" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="python_template_cpp.tests.test_all.test_c_library_and_header_are_installed">
+<span class="sig-prename descclassname"><span class="pre">python_template_cpp.tests.test_all.</span></span><span class="sig-name descname"><span class="pre">test_c_library_and_header_are_installed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#python_template_cpp.tests.test_all.test_c_library_and_header_are_installed" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="python_template_cpp.tests.test_all.test_c_consumer_builds_against_the_installed_package">
+<span class="sig-prename descclassname"><span class="pre">python_template_cpp.tests.test_all.</span></span><span class="sig-name descname"><span class="pre">test_c_consumer_builds_against_the_installed_package</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tmp_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#python_template_cpp.tests.test_all.test_c_consumer_builds_against_the_installed_package" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="python_template_cpp.tests.test_all.test_cmake_project_installs_a_package_that_find_package_locates">
+<span class="sig-prename descclassname"><span class="pre">python_template_cpp.tests.test_all.</span></span><span class="sig-name descname"><span class="pre">test_cmake_project_installs_a_package_that_find_package_locates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tmp_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#python_template_cpp.tests.test_all.test_cmake_project_installs_a_package_that_find_package_locates" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </section>
 </section>
@@ -236,16 +335,37 @@
       <path class="fd-toc-thumb" fill="none" />
     </svg><ul class="fd-toc-list">
   <li class="fd-toc-item" data-depth="1">
-    <a href="#classes">Classes</a>
+    <a href="#attributes">Attributes</a>
+  </li>
+  <li class="fd-toc-item" data-depth="1">
+    <a href="#functions">Functions</a>
   </li>
   <li class="fd-toc-item" data-depth="1">
     <a href="#module-contents">Module Contents</a>
   </li>
   <li class="fd-toc-item" data-depth="2">
-    <a href="#python_template_cpp.tests.test_all.TestAll">TestAll</a>
+    <a href="#python_template_cpp.tests.test_all.C_CONSUMER">C_CONSUMER</a>
   </li>
-  <li class="fd-toc-item" data-depth="3">
-    <a href="#python_template_cpp.tests.test_all.TestAll.test_all">TestAll.test_all()</a>
+  <li class="fd-toc-item" data-depth="2">
+    <a href="#python_template_cpp.tests.test_all.CMAKE_CONSUMER">CMAKE_CONSUMER</a>
+  </li>
+  <li class="fd-toc-item" data-depth="2">
+    <a href="#python_template_cpp.tests.test_all._library_filename">_library_filename()</a>
+  </li>
+  <li class="fd-toc-item" data-depth="2">
+    <a href="#python_template_cpp.tests.test_all._cmake_build">_cmake_build()</a>
+  </li>
+  <li class="fd-toc-item" data-depth="2">
+    <a href="#python_template_cpp.tests.test_all.test_all">test_all()</a>
+  </li>
+  <li class="fd-toc-item" data-depth="2">
+    <a href="#python_template_cpp.tests.test_all.test_c_library_and_header_are_installed">test_c_library_and_header_are_installed()</a>
+  </li>
+  <li class="fd-toc-item" data-depth="2">
+    <a href="#python_template_cpp.tests.test_all.test_c_consumer_builds_against_the_installed_package">test_c_consumer_builds_against_the_installed_package()</a>
+  </li>
+  <li class="fd-toc-item" data-depth="2">
+    <a href="#python_template_cpp.tests.test_all.test_cmake_project_installs_a_package_that_find_package_locates">test_cmake_project_installs_a_package_that_find_package_locates()</a>
   </li>
 </ul>
 

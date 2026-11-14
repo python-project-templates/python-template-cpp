@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=6a604523" />
     <link rel="stylesheet" type="text/css" href="../_static/fonts/fuma-fonts.css?v=c2892c73" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/custom.css?v=88c24c6a" />
     <script src="../_static/documentation_options.js?v=01f34227"></script>
@@ -20,7 +20,7 @@
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../_static/design-tabs.js?v=fcb327ea"></script>
     <script data-searchlite-index="searchlite-index.json" defer="defer" src="../_static/searchlite.js?v=a5320898"></script>
     <script defer="defer" src="../_static/fuma.js?v=9c325f6c"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
@@ -563,6 +563,10 @@ window.runMermaid = runMermaid;</script>
 <span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os.path</span>
 
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"nt"</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">"lib"</span><span class="p">)):</span>
+    <span class="c1"># Windows has no rpath, so the extension finds libpython_template_cpp.dll through this directory.</span>
+    <span class="n">_DLL_DIRECTORY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">add_dll_directory</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">"lib"</span><span class="p">))</span>
+
 <span class="kn">from</span><span class="w"> </span><span class="nn">.extension</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">__version__</span> <span class="o">=</span> <span class="s2">"0.1.0"</span>
@@ -586,6 +590,38 @@ window.runMermaid = runMermaid;</script>
 <a class="viewcode-back" href="../autoapi/python_template_cpp/index.html#python_template_cpp.lib_path">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">lib_path</span><span class="p">():</span>
     <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">"lib"</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="get_prefix">
+<a class="viewcode-back" href="../autoapi/python_template_cpp/index.html#python_template_cpp.get_prefix">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_prefix</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""The installed package directory, which holds ``include`` and ``lib`` for libpython_template_cpp."""</span>
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="get_include">
+<a class="viewcode-back" href="../autoapi/python_template_cpp/index.html#python_template_cpp.get_include">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_include</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""The directory holding ``python_template_cpp/python_template_cpp.h``."""</span>
+    <span class="k">return</span> <span class="n">include_path</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="get_library_dirs">
+<a class="viewcode-back" href="../autoapi/python_template_cpp/index.html#python_template_cpp.get_library_dirs">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_library_dirs</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Directories holding the bundled libpython_template_cpp shared library."""</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">lib_path</span><span class="p">()]</span></div>
+
+
+
+<div class="viewcode-block" id="get_libraries">
+<a class="viewcode-back" href="../autoapi/python_template_cpp/index.html#python_template_cpp.get_libraries">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_libraries</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Link names for libpython_template_cpp, for ``-l`` or ``target_link_libraries``."""</span>
+    <span class="k">return</span> <span class="p">[</span><span class="s2">"libpython_template_cpp"</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"nt"</span> <span class="k">else</span> <span class="s2">"python_template_cpp"</span><span class="p">]</span></div>
 
 </pre></div>
 

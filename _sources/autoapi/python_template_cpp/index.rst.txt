@@ -19,6 +19,7 @@ Attributes
 
 .. autoapisummary::
 
+   python_template_cpp._DLL_DIRECTORY
    python_template_cpp.__version__
 
 
@@ -31,10 +32,16 @@ Functions
    python_template_cpp.include_path
    python_template_cpp.bin_path
    python_template_cpp.lib_path
+   python_template_cpp.get_prefix
+   python_template_cpp.get_include
+   python_template_cpp.get_library_dirs
+   python_template_cpp.get_libraries
 
 
 Package Contents
 ----------------
+
+.. py:data:: _DLL_DIRECTORY
 
 .. py:function:: add(i: int, j: int) -> int
 
@@ -47,4 +54,24 @@ Package Contents
 .. py:function:: bin_path()
 
 .. py:function:: lib_path()
+
+.. py:function:: get_prefix() -> str
+
+   The installed package directory, which holds ``include`` and ``lib`` for libpython_template_cpp.
+
+
+.. py:function:: get_include() -> str
+
+   The directory holding ``python_template_cpp/python_template_cpp.h``.
+
+
+.. py:function:: get_library_dirs() -> list[str]
+
+   Directories holding the bundled libpython_template_cpp shared library.
+
+
+.. py:function:: get_libraries() -> list[str]
+
+   Link names for libpython_template_cpp, for ``-l`` or ``target_link_libraries``.
+
 

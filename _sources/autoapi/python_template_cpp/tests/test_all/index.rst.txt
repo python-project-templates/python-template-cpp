@@ -4,19 +4,88 @@ python_template_cpp.tests.test_all
 .. py:module:: python_template_cpp.tests.test_all
 
 
-Classes
--------
+Attributes
+----------
 
 .. autoapisummary::
 
-   python_template_cpp.tests.test_all.TestAll
+   python_template_cpp.tests.test_all.C_CONSUMER
+   python_template_cpp.tests.test_all.CMAKE_CONSUMER
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   python_template_cpp.tests.test_all._library_filename
+   python_template_cpp.tests.test_all._cmake_build
+   python_template_cpp.tests.test_all.test_all
+   python_template_cpp.tests.test_all.test_c_library_and_header_are_installed
+   python_template_cpp.tests.test_all.test_c_consumer_builds_against_the_installed_package
+   python_template_cpp.tests.test_all.test_cmake_project_installs_a_package_that_find_package_locates
 
 
 Module Contents
 ---------------
 
-.. py:class:: TestAll
+.. py:data:: C_CONSUMER
+   :value: Multiline-String
 
-   .. py:method:: test_all()
+   .. raw:: html
 
+      <details><summary>Show Value</summary>
+
+   .. code-block:: python
+
+      """
+      #include <stdio.h>
+      #include <python_template_cpp/python_template_cpp.h>
+      
+      int main(void) {
+          printf("%u %d", python_template_cpp_abi_version(), python_template_cpp_add(1, 2));
+          return 0;
+      }
+      """
+
+   .. raw:: html
+
+      </details>
+
+
+
+.. py:data:: CMAKE_CONSUMER
+   :value: Multiline-String
+
+   .. raw:: html
+
+      <details><summary>Show Value</summary>
+
+   .. code-block:: python
+
+      """
+      cmake_minimum_required(VERSION 3.20)
+      project(consumer LANGUAGES C)
+      find_package(python_template_cpp CONFIG REQUIRED)
+      add_executable(consumer consumer.c)
+      target_link_libraries(consumer PRIVATE python_template_cpp::python_template_cpp)
+      """
+
+   .. raw:: html
+
+      </details>
+
+
+
+.. py:function:: _library_filename(name: str) -> str
+
+.. py:function:: _cmake_build(cmake: str, source: pathlib.Path, build: pathlib.Path, option: str) -> None
+
+.. py:function:: test_all()
+
+.. py:function:: test_c_library_and_header_are_installed()
+
+.. py:function:: test_c_consumer_builds_against_the_installed_package(tmp_path)
+
+.. py:function:: test_cmake_project_installs_a_package_that_find_package_locates(tmp_path)
 
