@@ -101,6 +101,8 @@ repair-wheel-command = "delocate-wheel --require-archs {delocate_archs} --exclud
 [tool.cibuildwheel.windows]
 archs = "AMD64"
 skip = "*win32 *arm64"
+# The C ABI library ships inside the wheel; delvewheel must not look for it on PATH.
+repair-wheel-command = "delvewheel repair --exclude libpython_template_cpp.dll -w {dest_dir} {wheel}"
 
 [tool.cibuildwheel.pyodide]
 test-command = "python -m pytest -vvv --pyargs python_template_cpp.tests"
