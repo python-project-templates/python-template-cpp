@@ -1,0 +1,4 @@
+@PACKAGE_INIT@
+
+include("${CMAKE_CURRENT_LIST_DIR}/python_template_cppTargets.cmake")
+check_required_components(python_template_cpp)
