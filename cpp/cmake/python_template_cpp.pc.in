@@ -1,0 +1,9 @@
+prefix=${pcfiledir}/../..
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: python_template_cpp
+Description: A C++-Python project template
+Version: @PROJECT_VERSION@
+Libs: -L${libdir} -lpython_template_cpp
+Cflags: -I${includedir}

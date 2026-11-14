@@ -1,7 +1,7 @@
 [build-system]
 requires = [
     "hatchling",
-    "hatch-cpp>=0.5.0",
+    "hatch-cpp>=0.6.0",
     "pybind11",
 ]
 build-backend = "hatchling.build"
@@ -39,7 +39,7 @@ develop = [
     "check-dist",
     "cibuildwheel",
     "codespell",
-    "hatch-cpp>=0.5.0",
+    "hatch-cpp>=0.6.0",
     "hatchling",
     "mdformat",
     "mdformat-myst",
@@ -76,6 +76,11 @@ filename = "pyproject.toml"
 search = 'version = "{current_version}"'
 replace = 'version = "{new_version}"'
 
+[[tool.bumpversion.files]]
+filename = "cpp/CMakeLists.txt"
+search = "VERSION {current_version}"
+replace = "VERSION {new_version}"
+
 [tool.cibuildwheel]
 build = "cp311-* cp312-* cp313-*"
 test-command = "pytest -vvv {project}/python_template_cpp/tests"
@@ -85,10 +90,13 @@ test-extras = "develop"
 manylinux-aarch64-image = "manylinux_2_28"
 manylinux-x86_64-image = "manylinux_2_28"
 skip = "*i686* *musllinux*"
+# Keep the bundled C ABI library where the extension's rpath expects it.
+repair-wheel-command = "auditwheel repair --exclude 'libpython_template_cpp.so' -w {dest_dir} {wheel}"
 
 [tool.cibuildwheel.macos]
 environment = {MACOSX_DEPLOYMENT_TARGET="11.0"}
 archs = "arm64"
+repair-wheel-command = "delocate-wheel --require-archs {delocate_archs} --exclude libpython_template_cpp.dylib -w {dest_dir} -v {wheel}"
 
 [tool.cibuildwheel.windows]
 archs = "AMD64"
@@ -98,6 +106,8 @@ skip = "*win32 *arm64"
 test-command = "python -m pytest -vvv --pyargs python_template_cpp.tests"
 test-extras = []
 test-requires = ["pytest"]
+# Emscripten has no shared libraries to split; compile the library in.
+environment = {HATCH_CPP_LIBRARY_SOURCE="direct"}
 
 [tool.coverage.run]
 branch = true
@@ -119,9 +129,27 @@ src = "/"
 
 [tool.hatch.build.hooks.hatch-cpp]
 verbose = true
-libraries = [
-    {name = "python_template_cpp/extension", sources = ["cpp/python-template-cpp/extension.cpp"], include-dirs = ["cpp"], binding="pybind11"}
-]
+
+# libpython_template_cpp: the C ABI library, shipped under python_template_cpp/lib. Its header is in python_template_cpp/include.
+[[tool.hatch.build.hooks.hatch-cpp.libraries]]
+name = "python_template_cpp/lib/libpython_template_cpp"
+sources = ["cpp/python-template-cpp/c_api.cpp", "cpp/python-template-cpp/example.cpp"]
+include-dirs = ["cpp", "python_template_cpp/include"]
+binding = "generic"
+define-macros = ["PYTHON_TEMPLATE_CPP_BUILD"]
+extra-compile-args-linux = ["-fvisibility=hidden"]
+extra-compile-args-darwin = ["-fvisibility=hidden"]
+expected-headers = ["python_template_cpp/include/python_template_cpp/python_template_cpp.h"]
+header-symbol-prefix = "python_template_cpp_"
+expected-abi-strings = ["PYTHON_TEMPLATE_CPP_ABI_VERSION 1"]
+
+# The pybind11 extension, linked against the library by default (library-source = bundled).
+[[tool.hatch.build.hooks.hatch-cpp.libraries]]
+name = "python_template_cpp/extension"
+sources = ["cpp/python/extension.cpp"]
+include-dirs = ["python_template_cpp/include"]
+binding = "pybind11"
+depends = ["python_template_cpp/lib/libpython_template_cpp"]
 
 [tool.hatch.build.targets.sdist]
 exclude = ["*.dll", "*.dylib", "*.so", "*.pyd"]
@@ -140,6 +168,7 @@ artifacts = [
     "python_template_cpp/*.dll",
     "python_template_cpp/*.dylib",
     "python_template_cpp/*.so",
+    "python_template_cpp/lib/*",
 ]
 packages = [
     "python_template_cpp",
